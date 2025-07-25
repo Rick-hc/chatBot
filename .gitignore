@@ -1,7 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React build
+frontend/build/
+frontend/dist/
+
+# Coverage reports
+coverage/
+*.coverage
+.nyc_output/
+
+# Test artifacts
+.pytest_cache/
+.coverage
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
 # ログファイル
 logs/
 *.log
-*.txt
 
 # 一時ファイル
 tmp/
@@ -11,10 +71,24 @@ tmp/
 # OS固有
 .DS_Store
 Thumbs.db
+.AppleDouble
+.LSOverride
+Desktop.ini
 
 # エディタ
 *.swp
 *.swo
 *~
 .vscode/
-.idea/ 
+.idea/
+
+# Application specific
+simple_backend.py
+full_backend.py
+temp_requirements.txt
+comprehensive_test_report.json
+lighthouse-report.json
+pwa_performance_report.json
+
+# Claude artifacts
+.claude/ 

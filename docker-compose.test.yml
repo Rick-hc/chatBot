@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # Test PostgreSQL Database
+  postgres-test:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: chatbot_test_db
+      POSTGRES_USER: chatbot_test_user
+      POSTGRES_PASSWORD: chatbot_test_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./backend/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chatbot_test_user -d chatbot_test_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Test Chroma Vector Database
+  chroma-test:
+    image: chromadb/chroma:latest
+    ports:
+      - "8002:8000"
+    environment:
+      - CHROMA_SERVER_HOST=0.0.0.0
+      - CHROMA_SERVER_HTTP_PORT=8000
+      - PERSIST_DIRECTORY=/chroma/test_data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend Tests
+  backend-test:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgresql://chatbot_test_user:chatbot_test_pass@postgres-test:5432/chatbot_test_db
+      - CHROMA_HOST=chroma-test
+      - CHROMA_PORT=8000
+      - OPENAI_API_KEY=test_api_key
+      - APP_ENV=test
+    volumes:
+      - ./backend:/app
+    depends_on:
+      postgres-test:
+        condition: service_healthy
+      chroma-test:
+        condition: service_healthy
+    command: ["python", "-m", "pytest", "tests/", "-v", "--tb=short"]
+
+  # Frontend Tests
+  frontend-test:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      - CI=true
+      - REACT_APP_API_URL=http://backend-test:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: ["npm", "test", "--", "--coverage", "--watchAll=false"]

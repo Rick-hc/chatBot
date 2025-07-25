@@ -1,0 +1,189 @@
+{
+  "name": "企業チャットボット - AI知識アシスタント",
+  "short_name": "企業チャットボット",
+  "description": "社内ナレッジを活用した次世代AI対話システム - 完璧なオフライン対応",
+  "version": "1.0.0",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#1f2937",
+  "background_color": "#ffffff",
+  "lang": "ja",
+  "dir": "ltr",
+  
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  
+  "screenshots": [
+    {
+      "src": "/screenshots/desktop-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "デスクトップ版チャットボット画面"
+    },
+    {
+      "src": "/screenshots/mobile-narrow.png",
+      "sizes": "375x812",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "モバイル版チャットボット画面"
+    }
+  ],
+  
+  "categories": [
+    "business",
+    "productivity",
+    "utilities",
+    "communication"
+  ],
+  
+  "shortcuts": [
+    {
+      "name": "新しい質問",
+      "short_name": "新規質問",
+      "description": "新しい質問を開始",
+      "url": "/?action=new_question",
+      "icons": [
+        {
+          "src": "/icons/shortcut-new.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "履歴表示",
+      "short_name": "履歴",
+      "description": "質問履歴を表示",
+      "url": "/?action=history",
+      "icons": [
+        {
+          "src": "/icons/shortcut-history.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "設定",
+      "short_name": "設定",
+      "description": "アプリ設定を開く",
+      "url": "/?action=settings",
+      "icons": [
+        {
+          "src": "/icons/shortcut-settings.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "オフラインモード",
+      "short_name": "オフライン",
+      "description": "オフライン機能を利用",
+      "url": "/?action=offline",
+      "icons": [
+        {
+          "src": "/icons/shortcut-offline.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  
+  "related_applications": [],
+  "prefer_related_applications": false,
+  
+  "protocol_handlers": [
+    {
+      "protocol": "web+chatbot",
+      "url": "/?chat=%s"
+    }
+  ],
+  
+  "file_handlers": [
+    {
+      "action": "/file-handler",
+      "accept": {
+        "text/plain": [".txt"],
+        "application/json": [".json"]
+      }
+    }
+  ],
+  
+  "share_target": {
+    "action": "/share-target",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "file",
+          "accept": ["text/plain", "application/json"]
+        }
+      ]
+    }
+  },
+  
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  
+  "launch_handler": {
+    "client_mode": "focus-existing"
+  },
+  
+  "handle_links": "preferred",
+  
+  "capture_links": "existing-client-navigate"
+}

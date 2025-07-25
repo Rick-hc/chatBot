@@ -1,0 +1,36 @@
+{
+  "name": "empower-chatbot",
+  "version": "1.0.0",
+  "description": "社内ナレッジを活用した対話型チャットボット",
+  "main": "working_backend.py",
+  "scripts": {
+    "start": "concurrently \"python working_backend.py\" \"cd frontend && npm start\"",
+    "dev": "npm run start",
+    "backend": "python working_backend.py",
+    "frontend": "cd frontend && npm start",
+    "install-deps": "pip install -r requirements.txt && cd frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "test": "cd frontend && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rick2846/empower.git"
+  },
+  "keywords": [
+    "chatbot",
+    "fastapi",
+    "react",
+    "typescript",
+    "知識管理",
+    "FAQ"
+  ],
+  "author": "Rick2846",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "python": ">=3.11.0"
+  }
+}
