@@ -19,30 +19,32 @@
 - 📱 **レスポンシブ**: モバイル・デスクトップ対応
 - ⚡ **高速レスポンス**: FastAPIによる高速バックエンド
 
-## 🚀 クイックスタート
+## 🚀 GitHub本格デプロイ - 3コマンド起動
 
-### 前提条件
+### 必要なもの
+- **Docker** & **Docker Compose** ([インストール](https://docs.docker.com/compose/install/))
+- **OpenAI API Key** ([取得方法](https://platform.openai.com/api-keys))
 
-- **Node.js** 18.0+ ([ダウンロード](https://nodejs.org/))
-- **Python** 3.11+ ([ダウンロード](https://python.org/))
-- **Git** ([ダウンロード](https://git-scm.com/))
-
-### インストール & 実行（3ステップ）
+### 🎯 完全自動セットアップ（3コマンド）
 
 ```bash
 # 1. リポジトリをクローン
 git clone https://github.com/Rick2846/empower.git
 cd empower
 
-# 2. 依存関係をインストール
-pip install -r requirements.txt
-cd frontend && npm install && cd ..
+# 2. 環境変数を設定
+cp .env.example .env
+# .envファイルを編集してOPENAI_API_KEYを設定
 
-# 3. アプリケーションを起動
-npm run start
+# 3. システム全体を起動
+docker-compose up -d
 ```
 
-🎉 **完了！** ブラウザで http://localhost:3000 にアクセス
+🎉 **完了！** 以下にアクセス:
+- **バックエンドAPI**: http://localhost:8000
+- **ヘルスチェック**: http://localhost:8000/health  
+- **API仕様書**: http://localhost:8000/docs
+- **テストデータ作成**: http://localhost:8000/test-data
 
 ## 📁 プロジェクト構成
 
