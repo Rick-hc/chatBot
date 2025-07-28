@@ -20,6 +20,8 @@ const SimpleChatMessage: React.FC<SimpleChatMessageProps> = ({
   onFeedback
 }) => {
   const [feedbackGiven, setFeedbackGiven] = useState(false);
+  const [showFeedbackForm, setShowFeedbackForm] = useState(false);
+  const [feedbackText, setFeedbackText] = useState('');
 
   const formatTime = (date: Date) => {
     return date.toLocaleTimeString('ja-JP', { 
@@ -29,8 +31,20 @@ const SimpleChatMessage: React.FC<SimpleChatMessageProps> = ({
   };
 
   const handleFeedback = (helpful: boolean) => {
+    if (helpful) {
+      setFeedbackGiven(true);
+      onFeedback?.(helpful);
+    } else {
+      setShowFeedbackForm(true);
+    }
+  };
+
+  const handleFeedbackSubmit = () => {
     setFeedbackGiven(true);
-    onFeedback?.(helpful);
+    setShowFeedbackForm(false);
+    onFeedback?.(false);
+    // In a real implementation, you would send the feedbackText to the server
+    console.log('Negative feedback submitted:', feedbackText);
   };
 
   if (isLoading) {
@@ -134,7 +148,7 @@ const SimpleChatMessage: React.FC<SimpleChatMessageProps> = ({
         {/* Feedback Section */}
         {!isUser && !candidates && message && (
           <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-600">
-            {!feedbackGiven ? (
+            {!feedbackGiven && !showFeedbackForm ? (
               <div>
                 <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                   この回答で解決しましたか？
@@ -151,6 +165,38 @@ const SimpleChatMessage: React.FC<SimpleChatMessageProps> = ({
                     className="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-colors"
                   >
                     いいえ
+                  </button>
+                </div>
+              </div>
+            ) : showFeedbackForm ? (
+              <div>
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                  申し訳ございません。<br />
+                  現在のQA集にご要望の回答が見つかりませんでした。<br />
+                  フィードバックのため、下記フォームにご質問内容を入力してください。
+                </p>
+                <textarea
+                  value={feedbackText}
+                  onChange={(e) => setFeedbackText(e.target.value)}
+                  placeholder="ご質問内容をお書きください..."
+                  className="w-full p-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  rows={3}
+                />
+                <div className="flex space-x-2 mt-3">
+                  <button
+                    onClick={handleFeedbackSubmit}
+                    className="px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors"
+                  >
+                    送信
+                  </button>
+                  <button
+                    onClick={() => {
+                      setShowFeedbackForm(false);
+                      setFeedbackText('');
+                    }}
+                    className="px-3 py-1 bg-gray-500 text-white text-sm rounded hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-1 transition-colors"
+                  >
+                    キャンセル
                   </button>
                 </div>
               </div>

@@ -92,3 +92,4 @@ pwa_performance_report.json
 
 # Claude artifacts
 .claude/ 
+.claude/settings.local.json

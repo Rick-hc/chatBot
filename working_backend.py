@@ -226,6 +226,30 @@ def get_faq_items():
         logger.error(f"FAQ error: {e}")
         raise HTTPException(status_code=500, detail=f"FAQ fetch failed: {str(e)}")
 
+@app.get("/api/faq/categories")
+def get_faq_categories():
+    """Get all FAQ categories"""
+    try:
+        logger.info("Fetching FAQ categories")
+        
+        # Extract unique categories from QA dataset
+        categories = set()
+        for item in qa_dataset:
+            category = item.get("category", "その他")
+            categories.add(category)
+        
+        categories_list = ["すべて"] + sorted(list(categories))
+        
+        logger.info(f"Returning {len(categories_list)} categories")
+        
+        return {
+            "categories": categories_list
+        }
+        
+    except Exception as e:
+        logger.error(f"Categories error: {e}")
+        raise HTTPException(status_code=500, detail=f"Categories fetch failed: {str(e)}")
+
 @app.get("/health")
 def health_check():
     return {

@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import './App.css';
 import SimpleChatHistory, { ChatMessageData } from './components/SimpleChatHistory';
 import SimpleChatInput from './components/SimpleChatInput';
-import ThemeToggle from './components/ThemeToggle';
+// import ThemeToggle from './components/ThemeToggle'; // Removed as per requirements
 import ErrorBoundary from './components/ErrorBoundary';
 import FAQ from './components/FAQ';
-import { ThemeProvider } from './hooks/useTheme';
 import axios from 'axios';
 
 interface Candidate {
@@ -91,7 +90,7 @@ function AppContent() {
   return (
     <div className="h-screen flex bg-white dark:bg-gray-900 transition-colors">
       {/* Sidebar with FAQ */}
-      {showFAQ && messages.length === 0 && (
+      {showFAQ && (
         <div className="w-80 border-r border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 flex flex-col">
           <div className="p-4 border-b border-gray-200 dark:border-gray-700">
             <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
@@ -102,7 +101,7 @@ function AppContent() {
             </p>
           </div>
           <div className="flex-1 overflow-hidden p-4">
-            <FAQ onQuestionSelect={handleFAQQuestionSelect} />
+            <FAQ key={showFAQ ? `faq-${Date.now()}` : 'faq-hidden'} onQuestionSelect={handleFAQQuestionSelect} />
           </div>
         </div>
       )}
@@ -123,14 +122,20 @@ function AppContent() {
               </h1>
               {messages.length > 0 && (
                 <button
-                  onClick={() => setShowFAQ(!showFAQ)}
+                  onClick={() => {
+                    setShowFAQ(!showFAQ);
+                    // Force re-render of FAQ component by updating a state
+                    if (!showFAQ) {
+                      window.location.hash = `#faq-refresh-${Date.now()}`;
+                    }
+                  }}
                   className="ml-4 text-sm text-blue-600 dark:text-blue-400 hover:underline"
                 >
                   {showFAQ ? 'FAQを隠す' : 'FAQを表示'}
                 </button>
               )}
             </div>
-            <ThemeToggle />
+            {/* ThemeToggle removed as per requirements */}
           </div>
         </header>
 
@@ -181,11 +186,9 @@ function AppContent() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <ErrorBoundary>
-        <AppContent />
-      </ErrorBoundary>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <AppContent />
+    </ErrorBoundary>
   );
 }
 
