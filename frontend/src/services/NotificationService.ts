@@ -71,14 +71,14 @@ class NotificationService {
       badge: '/icons/badge-72x72.png',
       tag: 'welcome',
       silent: false,
-      vibrate: [200, 100, 200],
-      actions: [
-        {
-          action: 'settings',
-          title: '設定',
-          icon: '/icons/settings.png'
-        }
-      ]
+      // vibrate: [200, 100, 200], // Not supported in NotificationOptions
+      // actions: [ // Not supported in NotificationOptions
+      //   {
+      //     action: 'settings',
+      //     title: '設定',
+      //     icon: '/icons/settings.png'
+      //   }
+      // ]
     });
   }
 
@@ -97,8 +97,8 @@ class NotificationService {
     const defaultOptions: NotificationOptions = {
       icon: '/icons/icon-192x192.png',
       badge: '/icons/badge-72x72.png',
-      vibrate: [100, 50, 100],
-      timestamp: Date.now(),
+      // vibrate: [100, 50, 100], // Not supported in NotificationOptions
+      // timestamp: Date.now(), // Not supported in NotificationOptions
       requireInteraction: false,
       silent: false,
       ...options
@@ -140,19 +140,19 @@ class NotificationService {
         message,
         timestamp: Date.now()
       },
-      actions: [
-        {
-          action: 'reply',
-          title: '返信',
-          icon: '/icons/reply.png'
-        },
-        {
-          action: 'view',
-          title: '表示',
-          icon: '/icons/view.png'
-        }
-      ],
-      vibrate: [200, 100, 200, 100, 200]
+      // actions: [ // Not supported in NotificationOptions
+      //   {
+      //     action: 'reply',
+      //     title: '返信',
+      //     icon: '/icons/reply.png'
+      //   },
+      //   {
+      //     action: 'view',
+      //     title: '表示',
+      //     icon: '/icons/view.png'
+      //   }
+      // ],
+      // vibrate: [200, 100, 200, 100, 200] // Not supported in NotificationOptions
     });
   }
 
@@ -167,24 +167,24 @@ class NotificationService {
       tag: `important-${Date.now()}`,
       requireInteraction: true,
       silent: false,
-      vibrate: priority === 'urgent' ? [300, 100, 300, 100, 300] : [200, 100, 200],
+      // vibrate: priority === 'urgent' ? [300, 100, 300, 100, 300] : [200, 100, 200], // Not supported in NotificationOptions
       data: {
         type: 'important',
         priority,
         timestamp: Date.now()
-      },
-      actions: [
-        {
-          action: 'acknowledge',
-          title: '確認',
-          icon: '/icons/check.png'
-        },
-        {
-          action: 'dismiss',
-          title: '閉じる',
-          icon: '/icons/close.png'
-        }
-      ]
+      }
+      // actions: [ // Not supported in NotificationOptions
+      //   {
+      //     action: 'acknowledge',
+      //     title: '確認',
+      //     icon: '/icons/check.png'
+      //   },
+      //   {
+      //     action: 'dismiss',
+      //     title: '閉じる',
+      //     icon: '/icons/close.png'
+      //   }
+      // ]
     });
   }
 
@@ -209,19 +209,19 @@ class NotificationService {
         percentage,
         timestamp: Date.now()
       },
-      actions: percentage < 100 ? [
-        {
-          action: 'cancel',
-          title: 'キャンセル',
-          icon: '/icons/cancel.png'
-        }
-      ] : [
-        {
-          action: 'view-result',
-          title: '結果を表示',
-          icon: '/icons/view.png'
-        }
-      ]
+      // actions: percentage < 100 ? [ // Not supported in NotificationOptions
+      //   {
+      //     action: 'cancel',
+      //     title: 'キャンセル',
+      //     icon: '/icons/cancel.png'
+      //   }
+      // ] : [
+      //   {
+      //     action: 'view-result',
+      //     title: '結果を表示',
+      //     icon: '/icons/view.png'
+      //   }
+      // ]
     });
   }
 
@@ -250,18 +250,18 @@ class NotificationService {
           scheduledTime: scheduledTime.toISOString(),
           timestamp: Date.now()
         },
-        actions: [
-          {
-            action: 'snooze',
-            title: 'スヌーズ',
-            icon: '/icons/snooze.png'
-          },
-          {
-            action: 'complete',
-            title: '完了',
-            icon: '/icons/complete.png'
-          }
-        ]
+        // actions: [ // Not supported in NotificationOptions
+        //   {
+        //     action: 'snooze',
+        //     title: 'スヌーズ',
+        //     icon: '/icons/snooze.png'
+        //   },
+        //   {
+        //     action: 'complete',
+        //     title: '完了',
+        //     icon: '/icons/complete.png'
+        //   }
+        // ]
       });
     }, delay);
 
