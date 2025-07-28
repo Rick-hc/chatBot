@@ -1,43 +1,52 @@
-# FastAPI Framework
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-python-multipart==0.0.6
+# # FastAPI Framework
+# fastapi==0.104.1
+# uvicorn[standard]==0.24.0
+# python-multipart==0.0.6
 
-# Pydantic for data validation
-pydantic==2.5.0
-pydantic-settings==2.1.0
+# # Pydantic for data validation
+# pydantic==2.5.0
+# pydantic-settings==2.1.0
 
-# OpenAI SDK
-openai==1.3.8
+# # OpenAI SDK
+# openai==1.3.8
 
-# Vector computation libraries
-numpy==1.25.2
-scikit-learn==1.3.2
+# # Vector computation libraries
+# numpy==1.25.2
+# scikit-learn==1.3.2
 
-# Vector database
-chromadb==0.4.18
+# # Vector database
+# chromadb==0.4.18
 
-# PostgreSQL
-psycopg2-binary==2.9.9
-sqlalchemy==2.0.23
-alembic==1.12.1
+# # PostgreSQL
+# psycopg2-binary==2.9.9
+# sqlalchemy==2.0.23
+# alembic==1.12.1
 
-# Environment management
-python-dotenv==1.0.0
+# # Environment management
+# python-dotenv==1.0.0
 
-# HTTP client
-httpx==0.25.2
+# # HTTP client
+# httpx==0.25.2
 
-# Retry mechanism
-tenacity==8.2.3
+# # Retry mechanism
+# tenacity==8.2.3
 
-# Testing
-pytest==7.4.3
-pytest-asyncio==0.21.1
-requests==2.31.0
+# # Testing
+# pytest==7.4.3
+# pytest-asyncio==0.21.1
+# requests==2.31.0
 
-# Logging and monitoring
-structlog==23.1.0
+# # Logging and monitoring
+# structlog==23.1.0
 
-# Additional utilities
-regex==2023.10.3
+# # Additional utilities
+# regex==2023.10.3
+
+
+# Backend-specific overrides (if backend-only venv を使う場合)
+chromadb==1.0.15
+psycopg2-binary==2.9.10
+sqlalchemy==2.0.41
+alembic==1.16.4
+
+# （その他はルートの requirements.txt に依存）

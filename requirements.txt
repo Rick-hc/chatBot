@@ -1,34 +1,78 @@
+# # Core API Framework
+# fastapi==0.116.1
+# uvicorn==0.35.0
+
+# # OpenAI Integration
+# openai==1.97.1
+
+# # Data Processing
+# numpy==2.2.4
+# pandas==2.2.3
+
+# # Environment & Configuration
+# python-dotenv==1.1.1
+# pydantic==2.11.7
+
+# # CORS & HTTP
+# python-multipart==0.0.20
+# httpx==0.28.1
+
+# # Development & Testing
+# pytest==8.4.1
+# pytest-asyncio==1.1.0
+
+# # Optional: Machine Learning (if needed)
+# # scikit-learn==1.7.1
+# # chromadb==1.0.15
+
+# # Database (if needed)
+# # psycopg2-binary==2.9.10
+# # sqlalchemy==2.0.41
+
+# # Additional utilities
+# click==8.2.1
+# typing-extensions==4.12.2
+
+
 # Core API Framework
 fastapi==0.116.1
-uvicorn==0.35.0
+uvicorn[standard]==0.35.0
 
 # OpenAI Integration
 openai==1.97.1
 
-# Data Processing
+# Vector DB & Computation
+chromadb==1.0.15
+faiss-cpu==1.11.0
+scikit-learn==1.7.1
 numpy==2.2.4
 pandas==2.2.3
+
+# Database
+psycopg2-binary==2.9.10
+sqlalchemy==2.0.41
+alembic==1.16.4
 
 # Environment & Configuration
 python-dotenv==1.1.1
 pydantic==2.11.7
+pydantic-settings==2.9.1
 
-# CORS & HTTP
-python-multipart==0.0.20
+# HTTP / CORS
 httpx==0.28.1
+python-multipart==0.0.20
+tenacity==8.2.3
 
 # Development & Testing
 pytest==8.4.1
 pytest-asyncio==1.1.0
-
-# Optional: Machine Learning (if needed)
-# scikit-learn==1.7.1
-# chromadb==1.0.15
-
-# Database (if needed)
-# psycopg2-binary==2.9.10
-# sqlalchemy==2.0.41
+requests==2.31.0
 
 # Additional utilities
 click==8.2.1
 typing-extensions==4.12.2
+
+# Optional (使うならアンコメントして)
+# chromadb==0.4.18
+# transformers
+# huggingface-hub
